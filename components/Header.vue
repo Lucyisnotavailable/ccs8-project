@@ -9,9 +9,9 @@
           <ul class="nav-menu">
             <li><NuxtLink to="/">Home</NuxtLink></li>
   
-            <!-- Recipes with pull downlist -->
+            <!-- Recipes with dropdown -->
             <li class="nav-item-dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-              <NuxtLink to="/recipe">Recipes ▾</NuxtLink>
+              <NuxtLink to="/allrecipe">Recipes ▾</NuxtLink>
               <transition name="fade">
                 <ul v-if="showDropdown" class="dropdown-menu">
                   <li><NuxtLink to="/recipe/breakfast">Breakfast</NuxtLink></li>
@@ -28,8 +28,8 @@
       </div>
   
       <div class="header-right">
-        <div v-if="isLoggedIn" class="user-avatar" @click="navigateTo('/dashboard')">
-          <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Avatar" class="avatar">
+        <div v-if="isLoggedIn" class="user-avatar" @click="goToProfile">
+          <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Avatar" class="avatar" />
         </div>
         <NuxtLink v-else to="/login" class="login-btn">Login</NuxtLink>
       </div>
@@ -38,15 +38,22 @@
   
   <script setup>
   import { ref, onMounted } from 'vue'
-  import { navigateTo } from '#app'
+  import { useRouter } from 'vue-router'
   
   const isLoggedIn = ref(false)
   const showDropdown = ref(false)
+  const router = useRouter()
   
+  // check
   onMounted(() => {
     if (process.client) {
       isLoggedIn.value = localStorage.getItem('isLoggedIn') === 'true'
     }
   })
+  
+  // to Profile
+  const goToProfile = () => {
+    router.push('/profile')
+  }
   </script>
   

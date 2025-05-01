@@ -1,6 +1,6 @@
 <template>
   <div class="login-page">
-    <h1>Welcome!</h1>
+    <h1 class="text-4xl font-bold">Welcome!</h1>
     
     <div class="login-form">
       <input 
@@ -25,6 +25,9 @@
 </template>
 
 <script setup>
+
+definePageMeta({layout: 'loginlayout'})
+
 const correctUsername = 'admin'
 const correctPassword = '123456'
 

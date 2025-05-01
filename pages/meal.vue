@@ -1,7 +1,5 @@
 <template>
   <div>
-    <Header/>
-
     <div class="weekly-plan">
       <h1>Weekly Meal Plan</h1>
 

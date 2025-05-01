@@ -1,6 +1,5 @@
 <template>
-  <div class="page-container">
-    
+  <div class="page-container">    
     <main class="recipe-container">
       <Breadcrumbs :items="[
         { text: 'Home', to: '/' },

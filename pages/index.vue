@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <Header />
-    
+  <div>  
     <!-- main -->
     <main class="home-container">
       <!-- welcome -->
@@ -62,7 +60,7 @@
         </div>
       </section>
 
-      <!-- Weekly Meal Planner -->
+      <!-- NOTREALLY ANYTHING HERE -->
       <section class="weekly-preview">
         <div class="preview-header">
           <h2>Weekly Meal Planner</h2>

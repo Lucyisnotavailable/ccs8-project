@@ -1,6 +1,5 @@
 <template>
   <div class="page-container">
-    <Header />
     
     <main class="about-container">
       <Breadcrumbs :items="[
@@ -54,8 +53,6 @@
         </NuxtLink>
       </section>
     </main>
-    
-    <Footer />
   </div>
 </template>
 
