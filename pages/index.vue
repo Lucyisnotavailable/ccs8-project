@@ -1,5 +1,5 @@
 <template>
-  <div>  
+  <div>
     <!-- main -->
     <main class="home-container">
       <!-- welcome -->
@@ -11,15 +11,22 @@
             <NuxtLink to="/recipes" class="primary-btn">
               Browse Recipes
             </NuxtLink>
-            <NuxtLink to="/video" class="secondary-btn">
+            <button class="secondary-btn" @click="triggerVideoFullscreen">
               Watch This Video →
-            </NuxtLink>
+            </button>
           </div>
         </div>
         <div class="right-content">
-          <!-- Add a video element here -->
-          <video width="100%" controls>
-            <source src="https://via.placeholder.com/500x300" type="video/mp4">
+          <!-- 占位视频，不能播放真实内容，但显示控件 -->
+          <video
+            ref="placeholderVideo"
+            class="video-placeholder shadow-lg"
+            width="100%"
+            controls
+            playsinline
+            preload="none"
+          >
+            <source src="https://via.placeholder.com/500x300" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -60,7 +67,7 @@
         </div>
       </section>
 
-      <!-- NOTREALLY ANYTHING HERE -->
+      <!-- Weekly planner -->
       <section class="weekly-preview">
         <div class="preview-header">
           <h2>Weekly Meal Planner</h2>
@@ -73,6 +80,31 @@
         </div>
       </section>
     </main>
-
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const placeholderVideo = ref(null)
+
+const triggerVideoFullscreen = () => {
+  const el = placeholderVideo.value
+  if (el) {
+    if (el.requestFullscreen) {
+      el.requestFullscreen()
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen()
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen()
+    }
+  }
+}
+</script>
+
+<style scoped>
+.video-placeholder {
+  width: 100%;
+  border-radius: 0; /* 移除圆角 */
+}
+</style>
