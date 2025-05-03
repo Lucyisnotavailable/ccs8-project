@@ -4,17 +4,19 @@
     <div class="profile-container">
       <!-- 用户信息卡片 -->
       <div class="profile-card">
-        <!-- 用户头像 -->
-        <div class="avatar-container">
-          <img src="https://via.placeholder.com/200" alt="User Avatar" class="avatar">
+        <!-- 左侧用户基本信息 -->
+        <div class="user-basic">
+          <div class="avatar-container">
+            <img src="https://via.placeholder.com/200" alt="User Avatar" class="avatar">
+          </div>
+          <div class="name-title">
+            <h1 class="username">Lucy</h1>
+            <p class="user-title">User</p>
+          </div>
         </div>
-        
-        <!-- 个人信息 -->
-        <div class="info-section">
-          <h1 class="username">Lucy</h1>
-          <p class="user-title">User</p>
-          
-          <!-- 用户统计信息 -->
+
+        <!-- 右侧统计信息和邮箱 -->
+        <div class="user-details">
           <div class="stats-container">
             <div class="stat-item">
               <span class="stat-number">128</span>
@@ -35,8 +37,8 @@
             <p class="email">alex@recipeplanner.com</p>
           </div>
         </div>
-        
-        <!-- 登出按钮 -->
+
+        <!-- 右下角登出按钮 -->
         <button class="logout-button">Logout</button>
       </div>
 
@@ -51,8 +53,6 @@
           <div class="recipe-card">Recipe 2</div>
           <div class="recipe-card">Recipe 3</div>
           <div class="recipe-card">Recipe 4</div>
-          <div class="recipe-card">Recipe 5</div>
-          <div class="recipe-card">Recipe 6</div>
         </div>
       </div>
     </div>
@@ -68,11 +68,11 @@
   --medium-gray: #959090;
 }
 
-/* 基础样式 - 加宽版 */
+/* 基础样式 */
 .profile-page {
-  max-width: 1000px; /* 从800px增加到1000px */
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 30px 40px; /* 左右padding增大 */
+  padding: 30px 40px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--primary);
 }
@@ -81,91 +81,103 @@
 .profile-container {
   display: flex;
   flex-direction: column;
-  gap: 30px; /* 间距稍增大 */
+  gap: 30px;
 }
 
-/* 用户信息卡片 - 加宽 */
+/* 用户信息卡片 - 新布局 */
 .profile-card {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   background: white;
-  padding: 40px 50px; /* 内边距增大 */
+  padding: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   position: relative;
 }
 
+.user-basic {
+  display: flex;
+  align-items: center;
+  width: 40%;
+  min-width: 300px;
+}
+
 .avatar {
-  width: 140px; /* 头像稍大 */
-  height: 140px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 4px solid var(--secondary);
+  border: 3px solid var(--secondary);
   object-fit: cover;
-  margin-right: 40px; /* 右边距增大 */
+  margin-right: 20px;
+}
+
+.name-title {
+  display: flex;
+  flex-direction: column;
 }
 
 .username {
-  font-size: 32px; /* 用户名更大 */
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   color: var(--primary);
 }
 
 .user-title {
-  font-size: 20px; /* 用户标题更大 */
+  font-size: 16px;
   color: var(--secondary);
-  margin-bottom: 25px;
 }
 
-/* 用户统计信息 - 加宽 */
+/* 右侧统计信息和邮箱 */
+.user-details {
+  width: 60%;
+  padding-left: 40px;
+  border-left: 1px solid var(--light-gray);
+}
+
 .stats-container {
   display: flex;
-  gap: 40px; /* 间距增大 */
+  gap: 30px;
   margin-bottom: 25px;
-  padding: 20px 0; /* 上下padding增大 */
-  border-top: 1px solid var(--light-gray);
-  border-bottom: 1px solid var(--light-gray);
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-width: 80px; /* 确保每个统计项有足够宽度 */
 }
 
 .stat-number {
-  font-size: 26px; /* 数字更大 */
+  font-size: 24px;
   font-weight: 700;
   color: var(--primary);
 }
 
 .stat-label {
-  font-size: 16px; /* 标签更大 */
+  font-size: 14px;
   color: var(--medium-gray);
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .info-item label {
-  font-size: 18px; /* 标签更大 */
+  font-size: 14px;
   color: var(--medium-gray);
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .info-item p.email {
   font-weight: 500;
-  font-size: 20px; /* 邮箱更大 */
+  font-size: 18px;
 }
 
-/* 登出按钮 - 稍大 */
+/* 右下角登出按钮 */
 .logout-button {
   position: absolute;
-  top: 30px;
-  right: 30px;
-  padding: 12px 24px;
+  bottom: 25px;
+  right: 25px;
+  padding: 10px 20px;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   background: transparent;
@@ -179,7 +191,7 @@
   transform: scale(1.05);
 }
 
-/* 收藏菜谱部分 - 加宽 */
+/* 收藏菜谱部分 */
 .favorites-section {
   background: white;
   padding: 35px 40px;
@@ -195,7 +207,7 @@
 }
 
 .section-title {
-  font-size: 28px; /* 标题更大 */
+  font-size: 24px;
   font-weight: 600;
   color: var(--primary);
 }
@@ -203,71 +215,75 @@
 .view-all {
   color: var(--secondary);
   text-decoration: none;
-  font-size: 18px; /* 更大 */
+  font-size: 16px;
   font-weight: 500;
   transition: all 0.2s;
 }
 
 .view-all:hover {
   text-decoration: underline;
-  transform: translateX(5px); /* 悬停动画更明显 */
+  transform: translateX(3px);
 }
 
-/* 食谱网格 - 每行显示更多 */
 .recipes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 卡片更宽 */
-  gap: 25px; /* 间距增大 */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
 }
 
 .recipe-card {
   aspect-ratio: 1/1;
   background-color: var(--light-gray);
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--medium-gray);
-  font-size: 20px; /* 文字更大 */
+  font-size: 18px;
   transition: all 0.2s;
   box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
 .recipe-card:hover {
-  transform: translateY(-8px) scale(1.05); /* 悬停效果更明显 */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
 /* 响应式设计 */
-@media (max-width: 1100px) {
-  .profile-page {
+@media (max-width: 900px) {
+  .user-basic,
+  .user-details {
+    width: 100%;
+  }
+  
+  .user-details {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--light-gray);
+    padding-top: 25px;
+    margin-top: 25px;
+  }
+  
+  .profile-card {
     padding: 30px;
   }
 }
 
-@media (max-width: 768px) {
-  .profile-card {
+@media (max-width: 600px) {
+  .user-basic {
+    min-width: auto;
     flex-direction: column;
-    padding: 30px;
     text-align: center;
   }
   
   .avatar {
     margin-right: 0;
-    margin-bottom: 25px;
-    width: 120px;
-    height: 120px;
+    margin-bottom: 15px;
   }
   
   .stats-container {
-    justify-content: center;
-    gap: 25px;
-  }
-  
-  .logout-button {
-    position: static;
-    margin-top: 25px;
-    width: 100%;
+    flex-direction: column;
+    gap: 15px;
   }
   
   .recipes-grid {
