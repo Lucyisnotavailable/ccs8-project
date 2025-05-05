@@ -1,45 +1,127 @@
 <template>
-  <footer class="w-full bg-[#383863] text-white py-6 relative">
-    <!-- Logo 绝对居中 -->
-    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-      <img src="https://via.placeholder.com/80x80?text=Logo" alt="Logo" class="w-20 h-20" />
-    </div>
-
-    <!-- 内容区域 -->
-    <div class="w-full max-w-screen-xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6 relative z-0">
-      
-      <!-- 左侧信息 -->
-      <div class="flex-1 min-w-[300px]">
-        <div class="flex flex-col md:flex-row gap-6 justify-center">
-          <!-- Support -->
-          <div class="flex-1 max-w-[200px]">
-            <h4 class="text-[#c7b368] text-[20px] font-bold mb-2">Support</h4>
-            <ul class="space-y-2">
-              <li><NuxtLink to="/help" class="text-[#efedec] hover:text-[#c7b368] transition">Help / FAQ</NuxtLink></li>
-              <li><NuxtLink to="/terms" class="text-[#efedec] hover:text-[#c7b368] transition">Terms & Conditions</NuxtLink></li>
-              <li><NuxtLink to="/credits" class="text-[#efedec] hover:text-[#c7b368] transition">Credits</NuxtLink></li>
-            </ul>
-          </div>
-          <!-- Team -->
-          <div class="flex-1 max-w-[200px]">
-            <h4 class="text-[#c7b368] text-[20px] font-bold mb-2">Team</h4>
-            <ul class="space-y-2">
-              <li><NuxtLink to="/about" class="text-[#efedec] hover:text-[#c7b368] transition">About Us</NuxtLink></li>
-              <li><NuxtLink to="/contact" class="text-[#efedec] hover:text-[#c7b368] transition">Contact Us</NuxtLink></li>
-            </ul>
-          </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <!-- 左边 Support 和 Team 左右排列 -->
+      <div class="footer-left">
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><NuxtLink to="/help">Help / FAQ</NuxtLink></li>
+            <li><NuxtLink to="/terms">Terms & Conditions</NuxtLink></li>
+            <li><NuxtLink to="/credits">Credits</NuxtLink></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Team</h4>
+          <ul>
+            <li><NuxtLink to="/about">About Us</NuxtLink></li>
+            <li><NuxtLink to="/contact">Contact Us</NuxtLink></li>
+          </ul>
         </div>
       </div>
 
-     <!-- Chatbox 靠右但有留白 -->
-     <div class="flex-1 min-w-[220px] flex justify-end">
-      <div class="bg-[#959090] p-2 w-[220px] h-[160px]">
-        <div class="bg-[#efedec] text-[#383863] p-3 w-full h-full flex items-center justify-center text-center">
-          <p>Welcome! How can I assist you today?</p>
-        </div>
+      <!-- 中间 Logo -->
+      <div class="footer-logo">
+        <img src="/assets/images/logo.png" alt="Logo" />
       </div>
     </div>
 
-    </div>
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" @click="scrollToTop">⬆</button>
   </footer>
 </template>
+
+<script setup>
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
+<style scoped>
+.footer {
+  width: 100%;
+  background-color: #383863;
+  color: white;
+  padding: 20px 60px; /* 减少上下空白空间 */
+  position: relative;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 左边 Support 和 Team 左右排列 */
+.footer-left {
+  display: flex;
+  gap: 60px; /* 左右排列间距 */
+}
+
+.footer-section {
+  min-width: 200px;
+}
+
+.footer-section h4 {
+  color: #c7b368;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: #efedec;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #c7b368;
+}
+
+/* 中间的 Logo，确保它在页面绝对居中 */
+.footer-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.footer-logo img {
+  width: 300px;
+  height: auto;
+}
+
+/* 回到顶部按钮 */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #c7b368dd;
+  color: #383863;
+  padding: 8px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  z-index: 1000;
+}
+
+.back-to-top:hover {
+  opacity: 1;
+  background-color: #bfa94c;
+}
+</style>

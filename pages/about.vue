@@ -1,6 +1,5 @@
 <template>
   <div class="page-container">
-    
     <main class="about-container">
       <Breadcrumbs :items="[
         { text: 'Home', to: '/' },
@@ -8,24 +7,24 @@
       ]" />
       
       <section class="about-hero">
-        <h1>About RecipePlanner</h1>
-        <p class="subtitle">Making meal planning simple and enjoyable</p>
+        <h1>About InRecipe Team</h1>
+        <p class="subtitle">Simplifying your cooking journey with smart recipe solutions</p>
       </section>
       
       <section class="mission-section">
         <div class="mission-content">
           <h2>Our Mission</h2>
           <p>
-            At RecipePlanner, we believe that meal planning should be effortless and enjoyable. 
-            Our goal is to help you discover delicious recipes and organize your weekly meals 
-            without the stress and hassle.
+            At InRecipe, we're transforming how home cooks discover and organize recipes. 
+            Our platform combines smart recommendations with intuitive meal planning tools 
+            to help you reduce food waste, save time, and enjoy stress-free cooking.
           </p>
         </div>
         <div class="mission-image">
           <img 
-            src="https://via.placeholder.com/300x200" 
-            alt="Team working on meal planning" 
-            class="about-image"
+            src="https://via.placeholder.com/500x300" 
+            alt="InRecipe Logo" 
+            class="logo-image"
           >
         </div>
       </section>
@@ -34,23 +33,32 @@
         <h2>Meet The Team</h2>
         <div class="team-grid">
           <div v-for="member in teamMembers" :key="member.id" class="team-card">
-            <img 
-              src="https://via.placeholder.com/150x150" 
-              :alt="member.name" 
-              class="team-avatar"
-            >
+            <div class="avatar-container">
+              <img 
+                :src="member.avatar" 
+                :alt="member.name" 
+                class="team-avatar"
+              >
+            </div>
             <h3>{{ member.name }}</h3>
-            <p class="role">{{ member.role }}</p>
+            <p class="role">
+              <span class="role-line">{{ member.role.split(',')[0] }}</span>
+              <span class="role-line">{{ member.role.split(',')[1] }}</span>
+            </p>
             <p class="bio">{{ member.bio }}</p>
           </div>
         </div>
       </section>
       
-      <section class="contact-cta">
-        <h2>Have Questions?</h2>
-        <NuxtLink to="/contact" class="cta-button">
-          Contact Us
-        </NuxtLink>
+      <section class="navigation-cta">
+        <div class="cta-buttons">
+          <NuxtLink to="/contact" class="nav-button contact-button">
+            Contact Us
+          </NuxtLink>
+          <NuxtLink to="/faq" class="nav-button faq-button">
+            Visit FAQ
+          </NuxtLink>
+        </div>
       </section>
     </main>
   </div>
@@ -60,27 +68,23 @@
 const teamMembers = [
   {
     id: 1,
-    name: 'Alex Chen',
-    role: 'Founder & Developer',
-    bio: 'Passionate about creating tools that simplify everyday life.'
+    name: 'Ruiming Cai',
+    role: 'Developer,UI/UX Designer',
+    bio: 'HATE CL',
+    avatar: '@/assets/images/lucy.jpeg'
+
   },
   {
     id: 2,
-    name: 'Maria Garcia',
-    role: 'Nutrition Specialist',
-    bio: 'Ensuring our recipes are both delicious and balanced.'
-  },
-  {
-    id: 3,
-    name: 'Jamie Wilson',
-    role: 'UI/UX Designer',
-    bio: 'Focused on making the app intuitive and enjoyable to use.'
+    name: 'Francedric Jhann Vicher',
+    role: 'Content Editor,Document Writer',
+    bio: 'idk what to put here',
+    avatar: '@/assets/images/lucy.jpeg'
   }
 ]
 </script>
 
 <style scoped>
-/* 使用你的配色方案 */
 :root {
   --primary: #383863;
   --secondary: #c7b368;
@@ -90,7 +94,6 @@ const teamMembers = [
 
 .page-container {
   font-family: 'Calibri', sans-serif;
-  font-size: 12pt;
 }
 
 .about-container {
@@ -113,6 +116,8 @@ const teamMembers = [
 .subtitle {
   font-size: 1.2rem;
   color: var(--medium-gray);
+  margin: 0 auto;
+  max-width: 600px;
 }
 
 .mission-section {
@@ -134,15 +139,9 @@ const teamMembers = [
   margin-bottom: 20px;
 }
 
-.mission-image {
-  flex: 1;
-  text-align: center;
-}
-
-.about-image {
-  max-width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.logo-image {
+  max-width: 150px;
+  height: auto;
 }
 
 .team-section {
@@ -160,6 +159,8 @@ const teamMembers = [
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .team-card {
@@ -168,11 +169,12 @@ const teamMembers = [
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
 }
 
-.team-card:hover {
-  transform: translateY(-10px);
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .team-avatar {
@@ -180,19 +182,23 @@ const teamMembers = [
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
   border: 3px solid var(--secondary);
 }
 
 .team-card h3 {
   color: var(--primary);
   margin-bottom: 5px;
+  font-size: 1rem; /* 增大字体 */
+  font-weight: bold; /* 设置为粗体 */
 }
 
 .role {
   color: var(--secondary);
-  font-weight: bold;
   margin-bottom: 15px;
+}
+
+.role-line {
+  display: block; /* Ensures each role is on a new line */
 }
 
 .bio {
@@ -200,38 +206,64 @@ const teamMembers = [
   line-height: 1.6;
 }
 
-.contact-cta {
-  text-align: center;
+.navigation-cta {
   margin: 60px 0;
+  text-align: center;
 }
 
-.cta-button {
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-button {
   display: inline-block;
   padding: 12px 30px;
-  background-color: var(--secondary);
-  color: var(--primary);
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
   transition: all 0.3s ease;
+  min-width: 150px;
+  text-align: center;
+}
+
+.contact-button {
+  background-color: var(--secondary);
+  color: var(--primary);
   border: 2px solid var(--secondary);
 }
 
-.cta-button:hover {
-  background-color: transparent;
-  color: var(--secondary);
-  transform: translateY(-3px);
+.faq-button {
+  background-color: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
 }
 
-/* 响应式设计 */
+.nav-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 768px) {
   .mission-section {
     flex-direction: column;
   }
   
-  .team-grid {
-    grid-template-columns: 1fr;
+  .logo-image {
+    margin-top: 20px;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-button {
+    width: 100%;
+    max-width: 250px;
   }
 }
 </style>

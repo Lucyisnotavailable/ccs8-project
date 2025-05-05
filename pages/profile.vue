@@ -20,26 +20,39 @@
           <div class="stats-container">
             <div class="stat-item">
               <span class="stat-number">128</span>
-              <span class="stat-label">Recipes</span>
+              <span class="stat-label">Created Recipes</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">42</span>
-              <span class="stat-label">Following</span>
+              <span class="stat-number">24</span>
+              <span class="stat-label">Liked Recipes</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">356</span>
-              <span class="stat-label">Followers</span>
+              <span class="stat-number">12</span>
+              <span class="stat-label">Comments</span>
             </div>
           </div>
           
           <div class="info-item">
             <label>Email</label>
-            <p class="email">alex@recipeplanner.com</p>
+            <p class="email">randomemailcom@gmail.com</p>
           </div>
         </div>
 
         <!-- 右下角登出按钮 -->
-        <button class="logout-button">Logout</button>
+        <button class="logout-button" @click="logout">Logout</button>
+      </div>
+
+      <!-- 本周卡路里检测 -->
+      <div class="calorie-check-section">
+        <div class="section-header">
+          <h2 class="section-title">Weekly Calorie Check</h2>
+          <NuxtLink to="/meal" class="view-all">Go to Calculator →</NuxtLink>
+        </div>
+        <!-- 显示卡路里数据或默认信息 -->
+        <div class="calorie-info">
+          <p>Current Weekly Calories: <strong>2200 kcal</strong></p>
+          <p>Click the link to adjust your daily calorie goals and track your progress!</p>
+        </div>
       </div>
 
       <!-- 收藏菜谱部分 -->
@@ -48,16 +61,48 @@
           <h2 class="section-title">Favorite Recipes</h2>
           <NuxtLink to="/favorites" class="view-all">View All →</NuxtLink>
         </div>
-        <div class="recipes-grid">
-          <div class="recipe-card">Recipe 1</div>
-          <div class="recipe-card">Recipe 2</div>
-          <div class="recipe-card">Recipe 3</div>
-          <div class="recipe-card">Recipe 4</div>
+
+        <!-- 如果没有收藏的菜谱，显示消息 -->
+        <div v-if="favorites.length === 0" class="no-favorites">
+          <p>You haven't added any favorite recipes yet!</p>
+          <img src="https://via.placeholder.com/200" alt="No Favorites" />
+        </div>
+
+        <!-- 如果有收藏菜谱，显示收藏的菜谱 -->
+        <div v-else class="recipes-grid">
+          <div v-for="(recipe, index) in favorites" :key="index" class="recipe-card">
+            <img :src="recipe.image" alt="Recipe Image" class="recipe-img" />
+            <p class="recipe-name">{{ recipe.name }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+// 模拟收藏菜谱数据
+const favorites = [
+  { name: 'Recipe 1', image: 'https://via.placeholder.com/180' },
+  { name: 'Recipe 2', image: 'https://via.placeholder.com/180' },
+  { name: 'Recipe 3', image: 'https://via.placeholder.com/180' },
+];
+
+// 登出功能
+const logout = () => {
+  const confirmed = confirm("Are you sure you want to log out?");
+  if (confirmed) {
+    // 标记为未登录
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('userSession'); // 可选：移除其他会话数据
+    router.push('/login');
+  }
+};
+</script>
 
 <style scoped>
 /* 使用您的配色方案 */
@@ -191,6 +236,45 @@
   transform: scale(1.05);
 }
 
+/* 本周卡路里检测部分 */
+.calorie-check-section {
+  background: white;
+  padding: 35px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.calorie-info {
+  font-size: 16px;
+  color: var(--medium-gray);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.view-all {
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+  transform: translateX(3px);
+}
+
 /* 收藏菜谱部分 */
 .favorites-section {
   background: white;
@@ -247,6 +331,22 @@
 .recipe-card:hover {
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.no-favorites {
+  text-align: center;
+  color: var(--medium-gray);
+}
+
+.no-favorites p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.no-favorites img {
+  width: 180px;
+  height: 180px;
+  margin-top: 10px;
 }
 
 /* 响应式设计 */
