@@ -7,25 +7,19 @@
       ]" />
       
       <section class="about-hero">
-        <h1>About InRecipe Team</h1>
-        <p class="subtitle">Simplifying your cooking journey with smart recipe solutions</p>
+        <h1>About Us</h1>
+        <p class="subtitle">Empowering your cooking with simplicity and flavor</p>
       </section>
       
       <section class="mission-section">
         <div class="mission-content">
-          <h2>Our Mission</h2>
+          <h2 class = mission-title>Our mission</h2>
           <p>
-            At InRecipe, we're transforming how home cooks discover and organize recipes. 
-            Our platform combines smart recommendations with intuitive meal planning tools 
-            to help you reduce food waste, save time, and enjoy stress-free cooking.
+            Welcome to InRecipe – your go-to platform for discovering and organizing delicious recipes!
+            We're a passionate team of students from Silliman University, dedicated to making meal planning and cooking accessible and enjoyable for everyone.
+            Our mission is to provide a user-friendly space where you can explore diverse cuisines, manage your meals, and stay on top of your nutritional goals.
+            Join us on this flavorful journey, and let's make cooking fun and stress-free together!
           </p>
-        </div>
-        <div class="mission-image">
-          <img 
-            src="https://via.placeholder.com/500x300" 
-            alt="InRecipe Logo" 
-            class="logo-image"
-          >
         </div>
       </section>
       
@@ -71,15 +65,14 @@ const teamMembers = [
     name: 'Ruiming Cai',
     role: 'Developer,UI/UX Designer',
     bio: 'HATE CL',
-    avatar: '@/assets/images/lucy.jpeg'
-
+    avatar: '/lucy.JPG'
   },
   {
     id: 2,
     name: 'Francedric Jhann Vicher',
     role: 'Content Editor,Document Writer',
     bio: 'idk what to put here',
-    avatar: '@/assets/images/lucy.jpeg'
+    avatar: '/cedric.jpeg'
   }
 ]
 </script>
@@ -126,8 +119,16 @@ const teamMembers = [
   gap: 40px;
   margin: 60px 0;
   padding: 30px;
-  background-color: var(--light-gray);
-  border-radius: 12px;
+  background-color: white; /* White background for the card effect */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Added shadow for card effect */
+  border-radius: 12px; /* Optional: round the corners slightly */
+}
+
+.mission-title {
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .mission-content {

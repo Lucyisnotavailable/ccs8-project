@@ -46,9 +46,9 @@
               class="styled-select"
             >
               <option value="">All Levels</option>
-              <option value="easy">Beginner</option>
-              <option value="medium">Intermediate</option>
-              <option value="hard">Advanced</option>
+              <option v-for="level in difficultyLevels" :key="level" :value="level">
+                {{ level }}
+              </option>
             </select>
           </div>
           
@@ -60,9 +60,9 @@
               class="styled-select"
             >
               <option value="">Any Time</option>
-              <option value="10">Under 10 mins</option>
-              <option value="20">Under 20 mins</option>
-              <option value="30">Under 30 mins</option>
+              <option v-for="time in timeOptions" :key="time.value" :value="time.value">
+                {{ time.label }}
+              </option>
             </select>
           </div>
         </div>
@@ -87,7 +87,7 @@
                 <div class="recipe-overlay">
                   <h3>{{ recipe.title }}</h3>
                   <div class="recipe-meta">
-                    <span class="time">{{ recipe.time }}</span>
+                    <span class="time">{{ recipe.time }} mins</span>
                     <span class="difficulty" :class="recipe.difficulty">
                       {{ formatDifficulty(recipe.difficulty) }}
                     </span>
@@ -98,12 +98,12 @@
           </div>
         </div>
       </section>
-
     </main>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import recipes from '~/data/recipes.js'
 
 const filter = {
@@ -117,16 +117,25 @@ const filteredRecipes = computed(() => {
   const breakfastRecipes = recipes.filter(recipe => recipe.type === 'breakfast')
   return breakfastRecipes.filter(recipe => {
     return (
-      (!filter.cuisine || recipe.cuisine === filter.cuisine) &&
-      (!filter.difficulty || recipe.difficulty === filter.difficulty) &&
-      (!filter.time || parseInt(recipe.time) <= parseInt(filter.time))
+      (!filter.cuisine || recipe.cuisine === filter.cuisine) && // Filter by selected cuisine
+      (!filter.difficulty || recipe.difficulty === filter.difficulty) && // Filter by difficulty
+      (!filter.time || parseInt(recipe.time) <= parseInt(filter.time)) // Filter by time
     )
   })
 })
 
 const cuisines = computed(() => {
-  return [...new Set(recipes.map(r => r.cuisine))]
+  return [...new Set(recipes.map(r => r.cuisine))] // Unique cuisines from recipes data
 })
+
+const difficultyLevels = ['Easy', 'Medium', 'Hard']
+
+const timeOptions = [
+  { label: 'Any Time', value: '' },
+  { label: 'Under 10 mins', value: '10' },
+  { label: 'Under 20 mins', value: '20' },
+  { label: 'Under 30 mins', value: '30' }
+]
 
 const formatDifficulty = (difficulty) => {
   const levels = {
@@ -134,7 +143,7 @@ const formatDifficulty = (difficulty) => {
     medium: 'Intermediate',
     hard: 'Advanced'
   }
-  return levels[difficulty] || difficulty
+  return levels[difficulty.toLowerCase()] || difficulty
 }
 
 const scrollToRecipes = () => {
@@ -144,5 +153,5 @@ const scrollToRecipes = () => {
 </script>
 
 <style scoped>
-@import "@/assets/css/template.css";
+@import "@/assets/css/template.css"; /* Custom styles for your template */
 </style>

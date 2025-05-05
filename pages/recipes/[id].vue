@@ -1,87 +1,85 @@
 <template>
-    <div class="page-container">
+  <div class="page-container">
+    <main class="recipe-container">
+      <Breadcrumbs :items="[
+        { text: 'Home', to: '/' },
+        { text: 'Recipes', to: '/recipes' },
+        { text: recipe.title, disabled: true }
+      ]" />
       
-      <main class="recipe-container">
-        <Breadcrumbs :items="[
-          { text: 'Home', to: '/' },
-          { text: 'Recipes', to: '/recipes' },
-          { text: recipe.title, disabled: true }
-        ]" />
+      <article class="recipe-article">
+        <!-- Recipe Header -->
+        <header class="recipe-header">
+          <h1>{{ recipe.title }}</h1>
+  
+          <img 
+            :src="recipe.image || 'https://via.placeholder.com/800x450'" 
+            :alt="recipe.title" 
+            class="recipe-image"
+          >
+        </header>
         
-        <article class="recipe-article">
-          <!-- Recipe Header -->
-          <header class="recipe-header">
-            <h1>{{ recipe.title }}</h1>
-            <div class="recipe-meta">
-              <span class="prep-time">⏱️ {{ recipe.prepTime }} prep</span>
-              <span class="cook-time">🍳 {{ recipe.cookTime }} cooking</span>
-              <span class="difficulty">🧑‍🍳 {{ recipe.difficulty }}</span>
-            </div>
-            <img 
-              src="https://via.placeholder.com/800x450" 
-              :alt="recipe.title" 
-              class="recipe-image"
-            >
-          </header>
+        <!-- Recipe Content -->
+        <div class="recipe-content">
+          <!-- Ingredients -->
+          <section class="ingredients" aria-labelledby="ingredients-heading">
+            <h2 id="ingredients-heading">Ingredients</h2>
+            <ul class="ingredient-list">
+              <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
+                <label class="ingredient-item">
+                  <input type="checkbox" class="ingredient-checkbox">
+                  <span>{{ ingredient }}</span>
+                </label>
+              </li>
+            </ul>
+          </section>
           
-          <!-- Recipe Content -->
-          <div class="recipe-content">
-            <!-- Ingredients -->
-            <section class="ingredients" aria-labelledby="ingredients-heading">
-              <h2 id="ingredients-heading">Ingredients</h2>
-              <ul class="ingredient-list">
-                <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
-                  <label class="ingredient-item">
-                    <input type="checkbox" class="ingredient-checkbox">
-                    <span>{{ ingredient }}</span>
-                  </label>
-                </li>
-              </ul>
-            </section>
-            
-            <!-- Instructions -->
-            <section class="instructions" aria-labelledby="instructions-heading">
-              <h2 id="instructions-heading">Instructions</h2>
-              <ol class="instruction-steps">
-                <li v-for="(step, index) in recipe.instructions" :key="index">
-                  <div class="step-number">{{ index + 1 }}</div>
-                  <div class="step-content">{{ step }}</div>
-                </li>
-              </ol>
-            </section>
+          <!-- Instructions -->
+          <section class="instructions" aria-labelledby="instructions-heading">
+            <h2 id="instructions-heading">Instructions</h2>
+            <ol class="instruction-steps">
+              <li v-for="(step, index) in recipe.instructions" :key="index">
+                <div class="step-number">{{ index + 1 }}</div>
+                <div class="step-content">{{ step }}</div>
+              </li>
+            </ol>
+          </section>
+        </div>
+        
+        <!-- Recipe Footer -->
+        <footer class="recipe-footer">
+          <div class="action-buttons">
+            <button 
+              class="save-button"
+              @click="toggleSaveRecipe"
+              :aria-label="isSaved ? 'Unsave recipe' : 'Save recipe'"
+            >
+              {{ isSaved ? '❤️ Saved' : '♡ Save Recipe' }}
+            </button>
+            <button class="print-button" @click="printRecipe">🖨️ Print</button>
           </div>
           
-          <!-- Recipe Footer -->
-          <footer class="recipe-footer">
-            <div class="action-buttons">
-              <button 
-                class="save-button"
-                @click="toggleSaveRecipe"
-                :aria-label="isSaved ? 'Unsave recipe' : 'Save recipe'"
-              >
-                {{ isSaved ? '❤️ Saved' : '♡ Save Recipe' }}
-              </button>
-              <button class="print-button" @click="printRecipe">🖨️ Print</button>
-            </div>
-            
-            <div class="nutrition-info" v-if="recipe.nutrition">
-              <h3>Nutrition Information</h3>
-              <table class="nutrition-table">
-                <tr v-for="(value, key) in recipe.nutrition" :key="key">
-                  <th>{{ key }}</th>
-                  <td>{{ value }}</td>
-                </tr>
-              </table>
-            </div>
-          </footer>
-        </article>
-      </main>
-  
-    </div>
-  </template>
+          <div class="nutrition-info" v-if="recipe.nutrition">
+            <h3>Nutrition Information</h3>
+            <table class="nutrition-table">
+              <tr v-for="(value, key) in recipe.nutrition" :key="key">
+                <th>{{ key }}</th>
+                <td>{{ value }}</td>
+              </tr>
+            </table>
+          </div>
+        </footer>
+      </article>
+    </main>
+  </div>
+</template>
+
+
+
+
   <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { recipes } from '@/data/recipes.js'
+import recipes from '@/data/recipes.js'
 import { ref, computed, watchEffect } from 'vue'
 
 const route = useRoute()
