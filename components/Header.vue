@@ -1,16 +1,23 @@
 <template>
   <header class="site-header">
     <div class="header-left">
-      <img src="/assets/images/logo.png" alt="Logo" class="logo" />
+      <NuxtLink to="/"> <img src="/assets/images/logo.png" alt="Logo" class="logo" /> </NuxtLink>
     </div>
 
     <div class="header-center">
       <nav class="nav-box">
         <ul class="nav-menu">
-          <li><NuxtLink to="/">Home</NuxtLink></li>
+          <li>
+            <NuxtLink to="/" :class="{ active: $route.path === '/' }">Home</NuxtLink>
+          </li>
 
           <!-- Recipes with dropdown -->
-          <li class="nav-item-dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+          <li
+            class="nav-item-dropdown"
+            :class="{ active: $route.path.startsWith('/category') || $route.path === '/allrecipe' }"
+            @mouseenter="showDropdown = true"
+            @mouseleave="showDropdown = false"
+          >
             <NuxtLink to="/allrecipe">Recipes ▾</NuxtLink>
             <transition name="fade">
               <ul v-if="showDropdown" class="dropdown-menu">
@@ -21,10 +28,17 @@
             </transition>
           </li>
 
-          <li><NuxtLink to="/meal">Count Calories</NuxtLink></li>
-      
-          <!-- Recipes with dropdown -->
-          <li class="nav-item-dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+          <li>
+            <NuxtLink to="/meal" :class="{ active: $route.path === '/meal' }">Count Calories</NuxtLink>
+          </li>
+
+          <!-- About with dropdown -->
+          <li
+            class="nav-item-dropdown"
+            :class="{ active: ['/about', '/help', '/contact'].includes($route.path) }"
+            @mouseenter="showDropdown = true"
+            @mouseleave="showDropdown = false"
+          >
             <NuxtLink to="/about">About Us ▾</NuxtLink>
             <transition name="fade">
               <ul v-if="showDropdown" class="dropdown-menu">
@@ -48,21 +62,26 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const isLoggedIn = ref(false)
 const showDropdown = ref(false)
-const router = useRouter()
 
-// check
+const router = useRouter()
+const $route = useRoute()
+
 onMounted(() => {
   if (process.client) {
     isLoggedIn.value = localStorage.getItem('isLoggedIn') === 'true'
   }
 })
 
-// to Profile
 const goToProfile = () => {
   router.push('/profile')
 }
 </script>
+
+<style scoped>
+
+
+</style>

@@ -31,40 +31,43 @@
         </div>
       </section>
 
-      <!-- Quick categories -->
       <section class="quick-categories">
-        <h2>Popular Categories</h2>
-        <div class="category-grid">
-          <NuxtLink to="/category/breakfast" class="category-card">
-            <div class="category-content">
-              <img src="https://via.placeholder.com/300x200" class="category-image" />
-              <h3>Breakfast</h3>
-              <p>Start your day right with a healthy breakfast!</p>
-            </div>
-          </NuxtLink>
-          <NuxtLink to="/category/lunch" class="category-card">
-            <div class="category-content">
-              <img src="https://via.placeholder.com/300x200" class="category-image" />
-              <h3>Lunch</h3>
-              <p>Delicious and easy lunch ideas!</p>
-            </div>
-          </NuxtLink>
-          <NuxtLink to="/category/dinner" class="category-card">
-            <div class="category-content">
-              <img src="https://via.placeholder.com/300x200" class="category-image" />
-              <h3>Dinner</h3>
-              <p>End your day with a satisfying dinner!</p>
-            </div>
-          </NuxtLink>
-          <NuxtLink to="/meal" class="category-card">
-            <div class="category-content">
-              <img src="https://via.placeholder.com/300x200" class="category-image" />
-              <h3>Calorie Calculator</h3>
-              <p>Track your daily calorie intake easily!</p>
-            </div>
-          </NuxtLink>
-        </div>
-      </section>
+  <h2>Popular Categories</h2>
+  <div class="category-grid">
+    <NuxtLink to="/category/breakfast" class="category-card">
+      <img src="/assets/images/Breakfast.jpg" class="category-image" />
+      <div class="category-overlay">
+        <h3>Breakfast</h3>
+        <p>Start your day right with a healthy breakfast!</p>
+      </div>
+    </NuxtLink>
+
+    <NuxtLink to="/category/lunch" class="category-card">
+      <img src="/assets/images/Lunch.jpg" class="category-image" />
+      <div class="category-overlay">
+        <h3>Lunch</h3>
+        <p>Delicious and easy lunch ideas just for you!</p>
+      </div>
+    </NuxtLink>
+
+    <NuxtLink to="/category/dinner" class="category-card">
+      <img src="/assets/images/Dinner.jpg" class="category-image" />
+      <div class="category-overlay">
+        <h3>Dinner</h3>
+        <p>End your day with a satisfying dinner!</p>
+      </div>
+    </NuxtLink>
+
+    <NuxtLink to="/meal" class="category-card">
+      <img src="/assets/images/Calorie.jpg" class="category-image" />
+      <div class="category-overlay">
+        <h3>Calorie Calculator</h3>
+        <p>Track your daily calorie intake easily!</p>
+      </div>
+    </NuxtLink>
+  </div>
+</section>
+
 
     
 

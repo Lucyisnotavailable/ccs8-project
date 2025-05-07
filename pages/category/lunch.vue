@@ -18,7 +18,7 @@
           </div>
           <div class="right-content">
             <img 
-              src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80" 
+              src="/assets/images/Lunch.jpg" 
               alt="Lunch Recipes"
               class="banner-image"
             >

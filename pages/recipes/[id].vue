@@ -6,19 +6,20 @@
         { text: 'Recipes', to: '/recipes' },
         { text: recipe.title, disabled: true }
       ]" />
-      
+
       <article class="recipe-article">
         <!-- Recipe Header -->
         <header class="recipe-header">
+          <button class="back-button" @click="goBack">← Back</button> <!-- 回到上一页按钮 -->
           <h1>{{ recipe.title }}</h1>
-  
+
           <img 
             :src="recipe.image || 'https://via.placeholder.com/800x450'" 
             :alt="recipe.title" 
             class="recipe-image"
           >
         </header>
-        
+
         <!-- Recipe Content -->
         <div class="recipe-content">
           <!-- Ingredients -->
@@ -33,7 +34,7 @@
               </li>
             </ul>
           </section>
-          
+
           <!-- Instructions -->
           <section class="instructions" aria-labelledby="instructions-heading">
             <h2 id="instructions-heading">Instructions</h2>
@@ -45,7 +46,7 @@
             </ol>
           </section>
         </div>
-        
+
         <!-- Recipe Footer -->
         <footer class="recipe-footer">
           <div class="action-buttons">
@@ -58,7 +59,7 @@
             </button>
             <button class="print-button" @click="printRecipe">🖨️ Print</button>
           </div>
-          
+
           <div class="nutrition-info" v-if="recipe.nutrition">
             <h3>Nutrition Information</h3>
             <table class="nutrition-table">
@@ -74,13 +75,10 @@
   </div>
 </template>
 
-
-
-
-  <script setup>
+<script setup>
 import { useRoute, useRouter } from 'vue-router'
 import recipes from '@/data/recipes.js'
-import { ref, computed, watchEffect } from 'vue'
+import { ref, computed, watchEffect, onMounted } from 'vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -102,240 +100,284 @@ watchEffect(() => {
 
 const isSaved = ref(false)
 
+// 在组件挂载时检查是否已保存
+onMounted(() => {
+  const saved = JSON.parse(localStorage.getItem('savedRecipes') || '[]')
+  isSaved.value = saved.includes(recipeId)
+})
+
+// 切换收藏状态
 const toggleSaveRecipe = () => {
-  isSaved.value = !isSaved.value
+  let saved = JSON.parse(localStorage.getItem('savedRecipes') || '[]')
+  if (isSaved.value) {
+    saved = saved.filter(id => id !== recipeId)
+    isSaved.value = false
+  } else {
+    saved.push(recipeId)
+    isSaved.value = true
+  }
+  localStorage.setItem('savedRecipes', JSON.stringify(saved))
 }
 
+// 打印食谱
 const printRecipe = () => {
   window.print()
 }
+
+// 返回上一页
+const goBack = () => {
+  router.back()
+}
 </script>
-  
-  
-  
-  
-  <style scoped>
-  /* Using your color scheme */
-  :root {
-    --primary: #383863;
-    --secondary: #c7b368;
-    --light-gray: #efedec;
-    --medium-gray: #959090;
+
+<style scoped>
+/* 样式部分略，确保已引入必要的样式 */
+</style>
+
+
+
+<style scoped>
+
+:root {
+  --primary: #383863;
+  --secondary: #c7b368;
+  --light-gray: #efedec;
+  --medium-gray: #959090;
+}
+
+.page-container {
+  font-family: 'Calibri', sans-serif;
+  font-size: 12pt;
+  line-height: 1.6;
+}
+
+.recipe-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.recipe-article {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.recipe-header {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 让标题、图片居中 */
+  text-align: center;
+  position: relative;
+}
+
+
+.recipe-header h1 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-size: 2.2rem;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  color: var(--medium-gray);
+  font-size: 0.9rem;
+}
+
+.recipe-image {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.recipe-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  padding: 30px;
+}
+
+.ingredients {
+  background: var(--light-gray);
+  padding: 20px;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.ingredients h2,
+.instructions h2 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--secondary);
+}
+
+.ingredient-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.ingredient-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--secondary);
+}
+
+.instruction-steps {
+  list-style: none;
+  padding: 0;
+  counter-reset: step-counter;
+}
+
+.instruction-steps li {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  counter-increment: step-counter;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  background: var(--secondary);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step-content {
+  flex-grow: 1;
+}
+
+.recipe-footer {
+  padding: 30px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.save-button,
+.print-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.save-button {
+  background-color: var(--light-gray);
+  color: var(--primary);
+}
+
+.save-button:hover {
+  background-color: #ffebee;
+}
+
+.print-button {
+  background-color: var(--primary);
+  color: white;
+}
+
+.print-button:hover {
+  background-color: #4a4a7a;
+}
+
+.nutrition-info h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.nutrition-table th {
+  color: var(--primary);
+  font-weight: normal;
+}
+
+.back-button {
+  background-color: var(--secondary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  align-self: flex-start;
+  display: inline-block;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .recipe-content {
+    grid-template-columns: 1fr;
   }
   
-  .page-container {
-    font-family: 'Calibri', sans-serif;
-    font-size: 12pt;
-    line-height: 1.6;
-  }
-  
-  .recipe-container {
-    max-width: 1000px;
-    margin: 0 auto;
+  .recipe-header,
+  .recipe-content,
+  .recipe-footer {
     padding: 20px;
-  }
-  
-  .recipe-article {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    overflow: hidden;
-  }
-  
-  .recipe-header {
-    padding: 30px;
-    text-align: center;
-  }
-  
-  .recipe-header h1 {
-    color: var(--primary);
-    margin-bottom: 15px;
-    font-size: 2.2rem;
   }
   
   .recipe-meta {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    color: var(--medium-gray);
-    font-size: 0.9rem;
+    flex-wrap: wrap;
   }
-  
-  .recipe-image {
-    width: 100%;
-    max-height: 450px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-top: 20px;
-  }
-  
-  .recipe-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-    padding: 30px;
-  }
-  
-  .ingredients {
-    background: var(--light-gray);
-    padding: 20px;
-    border-radius: 8px;
-    height: fit-content;
-  }
-  
-  .ingredients h2,
-  .instructions h2 {
-    color: var(--primary);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--secondary);
-  }
-  
-  .ingredient-list {
-    list-style: none;
+}
+
+@media print {
+  .page-container {
     padding: 0;
   }
   
-  .ingredient-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-    cursor: pointer;
-  }
-  
-  .ingredient-checkbox {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--secondary);
-  }
-  
-  .instruction-steps {
-    list-style: none;
+  .recipe-container {
+    max-width: 100%;
     padding: 0;
-    counter-reset: step-counter;
   }
   
-  .instruction-steps li {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-    counter-increment: step-counter;
-  }
-  
-  .step-number {
-    flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    background: var(--secondary);
-    color: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  .step-content {
-    flex-grow: 1;
-  }
-  
-  .recipe-footer {
-    padding: 30px;
-    border-top: 1px solid var(--light-gray);
+  .recipe-article {
+    box-shadow: none;
   }
   
   .action-buttons {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
+    display: none;
   }
-  
-  .save-button,
-  .print-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .save-button {
-    background-color: var(--light-gray);
-    color: var(--primary);
-  }
-  
-  .save-button:hover {
-    background-color: #ffebee;
-  }
-  
-  .print-button {
-    background-color: var(--primary);
-    color: white;
-  }
-  
-  .print-button:hover {
-    background-color: #4a4a7a;
-  }
-  
-  .nutrition-info h3 {
-    color: var(--primary);
-    margin-bottom: 15px;
-  }
-  
-  .nutrition-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .nutrition-table th,
-  .nutrition-table td {
-    padding: 8px 12px;
-    text-align: left;
-    border-bottom: 1px solid var(--light-gray);
-  }
-  
-  .nutrition-table th {
-    color: var(--primary);
-    font-weight: normal;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .recipe-content {
-      grid-template-columns: 1fr;
-    }
-    
-    .recipe-header,
-    .recipe-content,
-    .recipe-footer {
-      padding: 20px;
-    }
-    
-    .recipe-meta {
-      flex-wrap: wrap;
-    }
-  }
-  
-  @media print {
-    .page-container {
-      padding: 0;
-    }
-    
-    .recipe-container {
-      max-width: 100%;
-      padding: 0;
-    }
-    
-    .recipe-article {
-      box-shadow: none;
-    }
-    
-    .action-buttons {
-      display: none;
-    }
-  }
-  </style>
+}
+</style>

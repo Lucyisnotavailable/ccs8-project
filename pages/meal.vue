@@ -21,7 +21,7 @@
         <div
           v-for="(meal, mealIndex) in week[currentDayIndex].meals"
           :key="mealIndex"
-          class="meal-card"
+          class="meal-cardd"
         >
           <div class="meal-header">
             <h3>{{ meal.type }}</h3>
@@ -196,16 +196,16 @@ const clearAll = () => {
 
 .container {
   border-radius: 16px;
-  padding: 3rem; /* 增加内边距，增加上下左右的空间 */
+  padding:0,5rem,5rem,5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .title {
   text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
   margin-bottom: 2rem;
   color: #383863;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-weight: 600;
 }
 
 .day-selector {
@@ -214,6 +214,7 @@ const clearAll = () => {
   justify-content: center;
   gap: 0.75rem;
   margin-bottom: 2rem;
+  margin-top:2rem;
 }
 
 .day-button {
@@ -254,7 +255,7 @@ const clearAll = () => {
   gap: 1rem;
 }
 
-.meal-card {
+.meal-cardd {
   background: white;
   border-radius: 12px;
   padding: 1rem;

@@ -92,42 +92,42 @@ const teamMembers = [
 .about-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 24px;
 }
 
 .about-hero {
   text-align: center;
-  margin: 40px 0;
+  margin: 32px 0;
 }
 
 .about-hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   color: var(--primary);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
   font-size: 1.2rem;
   color: var(--medium-gray);
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 700px;
 }
 
 .mission-section {
   display: flex;
   align-items: center;
-  gap: 40px;
-  margin: 60px 0;
-  padding: 30px;
-  background-color: white; /* White background for the card effect */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Added shadow for card effect */
-  border-radius: 12px; /* Optional: round the corners slightly */
+  gap: 30px;
+  margin: 40px 0;
+  padding: 24px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
 }
 
 .mission-title {
   color: var(--primary);
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 16px;
   text-align: center;
 }
 
@@ -135,41 +135,37 @@ const teamMembers = [
   flex: 1;
 }
 
-.mission-content h2 {
-  color: var(--primary);
-  margin-bottom: 20px;
-}
-
-.logo-image {
-  max-width: 150px;
-  height: auto;
+.mission-content p {
+  color: black;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .team-section {
-  margin: 80px 0;
+  margin: 60px 0 40px;
 }
 
 .team-section h2 {
   text-align: center;
   color: var(--primary);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 2rem;
 }
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 700px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .team-card {
   background: white;
-  padding: 30px;
-  border-radius: 12px;
+  padding: 32px;
+  border-radius: 14px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
 }
 
 .avatar-container {
@@ -179,8 +175,8 @@ const teamMembers = [
 }
 
 .team-avatar {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--secondary);
@@ -188,46 +184,48 @@ const teamMembers = [
 
 .team-card h3 {
   color: var(--primary);
-  margin-bottom: 5px;
-  font-size: 1rem; /* 增大字体 */
-  font-weight: bold; /* 设置为粗体 */
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 .role {
   color: var(--secondary);
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
 }
 
 .role-line {
-  display: block; /* Ensures each role is on a new line */
+  display: block;
 }
 
 .bio {
   color: var(--medium-gray);
+  font-size: 1.05rem;
   line-height: 1.6;
 }
 
 .navigation-cta {
-  margin: 60px 0;
+  margin: 48px 0;
   text-align: center;
 }
 
 .cta-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .nav-button {
   display: inline-block;
-  padding: 12px 30px;
+  padding: 12px 28px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   transition: all 0.3s ease;
-  min-width: 150px;
+  min-width: 160px;
   text-align: center;
 }
 
@@ -245,26 +243,23 @@ const teamMembers = [
 
 .nav-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
   .mission-section {
     flex-direction: column;
   }
-  
-  .logo-image {
-    margin-top: 20px;
-  }
-  
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .nav-button {
     width: 100%;
     max-width: 250px;
   }
 }
+
 </style>

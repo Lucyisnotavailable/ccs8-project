@@ -22,12 +22,12 @@
 
       <!-- 中间 Logo -->
       <div class="footer-logo">
-        <img src="/assets/images/logo.png" alt="Logo" />
+        <NuxtLink to="/"> <img src="/assets/images/logo.png" alt="Logo" class="logo" />  </NuxtLink>
       </div>
     </div>
 
     <!-- 回到顶部按钮 -->
-    <button class="back-to-top" @click="scrollToTop">⬆</button>
+    <button class="back-to-top" @click="scrollToTop">↑</button>
   </footer>
 </template>
 

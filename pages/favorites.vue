@@ -1,69 +1,73 @@
 <template>
-    <div class="max-w-6xl mx-auto p-8 mt-10 bg-light-gray rounded-2xl shadow-xl">
-      <h1 class="text-4xl font-bold text-primary mb-8 text-center">Your Favorite Recipes</h1>
-  
-      <div v-if="favoriteRecipes.length" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <div
-          v-for="(recipe, index) in favoriteRecipes"
-          :key="index"
-          class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300"
+  <div class="min-h-screen bg-light-gray py-10 px-4 sm:px-10">
+    <!-- 页面标题 -->
+    <h1 class="text-3xl font-bold text-primary mb-8 text-center">My Favorite Recipes</h1>
+
+    <!-- 无收藏情况 -->
+    <div v-if="favorites.length === 0" class="text-center text-medium-gray">
+      <p class="text-xl mb-4">There is nothing here</p>
+      <img src="https://via.placeholder.com/250x150?text=No+Favorites" alt="No Favorites" class="mx-auto rounded" />
+    </div>
+
+    <!-- 有收藏菜谱 -->
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div 
+        v-for="recipe in favorites" 
+        :key="recipe.id" 
+        class="bg-white rounded-2xl shadow hover:shadow-lg transition p-4 flex flex-col justify-between"
+      >
+        <img 
+          :src="recipe.image || 'https://via.placeholder.com/300x200'" 
+          :alt="recipe.title" 
+          class="w-full h-48 object-cover rounded-xl mb-4"
+        />
+        <h2 class="text-lg font-semibold text-center text-primary mb-3">{{ recipe.title }}</h2>
+        <NuxtLink 
+          :to="`/recipes/${recipe.id}`"
+          class="block text-center text-sm text-secondary hover:underline mt-auto"
         >
-          <img
-            :src="recipe.image"
-            :alt="recipe.title"
-            class="w-full h-40 object-cover"
-          />
-          <div class="p-4">
-            <h3 class="text-xl font-semibold text-gray-800">{{ recipe.title }}</h3>
-            <p class="text-gray-500 text-sm mt-1">{{ recipe.description }}</p>
-            <NuxtLink
-              :to="`/recipe/${recipe.slug}`"
-              class="mt-4 inline-block text-primary font-semibold hover:underline"
-            >
-              View Details →
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
-  
-      <div v-else class="text-center text-gray-600 text-lg mt-16">
-        You haven't added any favorite recipes yet.
+          查看详情 →
+        </NuxtLink>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  
-  const favoriteRecipes = ref([
-    {
-      title: 'Spaghetti Carbonara',
-      image: 'https://source.unsplash.com/400x300/?pasta',
-      slug: 'spaghetti-carbonara',
-      description: 'Classic Italian pasta with creamy sauce and bacon.'
-    },
-    {
-      title: 'Avocado Toast',
-      image: 'https://source.unsplash.com/400x300/?avocado-toast',
-      slug: 'avocado-toast',
-      description: 'Healthy and quick breakfast option with avocado and eggs.'
-    },
-    {
-      title: 'Chicken Caesar Salad',
-      image: 'https://source.unsplash.com/400x300/?salad',
-      slug: 'chicken-caesar-salad',
-      description: 'Fresh romaine lettuce with grilled chicken and Caesar dressing.'
-    },
-    // 你可以继续添加更多菜谱
-  ])
-  </script>
-  
-  <style scoped>
-  .text-primary {
-    color: #383863;
-  }
-  .bg-light-gray {
-    background-color: #efedec;
-  }
-  </style>
-  
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import recipes from '@/data/recipes.js' // 假设你已经创建好的食谱数据文件
+
+const favorites = ref([])
+
+onMounted(() => {
+  const saved = localStorage.getItem('savedRecipes')
+  const savedIds = saved ? JSON.parse(saved) : []
+
+  favorites.value = recipes.filter(recipe => savedIds.includes(recipe.id))
+})
+</script>
+
+<style scoped>
+:root {
+  --primary: #383863;
+  --secondary: #c7b368;
+  --light-gray: #efedec;
+  --medium-gray: #959090;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.bg-light-gray {
+  background-color: var(--light-gray);
+}
+
+.text-medium-gray {
+  color: var(--medium-gray);
+}
+</style>

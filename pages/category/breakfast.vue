@@ -14,9 +14,9 @@
         </div>
         <div class="right-content">
           <img 
-            src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80" 
+            src="/assets/images/Breakfast.jpg" 
             alt="Breakfast Recipes"
-            class="banner-image"
+            class="w-full h-48 object-cover rounded"
           >
         </div>
       </section>
@@ -24,6 +24,7 @@
       <!-- Recipe Filters -->
       <section class="filter-section">
         <div class="filter-container">
+          <!-- Cuisine Filter -->
           <div class="filter-group">
             <label for="cuisine">Cuisine:</label>
             <select 
@@ -37,21 +38,23 @@
               </option>
             </select>
           </div>
-          
+
+          <!-- Level Filter -->
           <div class="filter-group">
-            <label for="difficulty">Level:</label>
+            <label for="level">Level:</label>
             <select 
-              id="difficulty" 
-              v-model="filter.difficulty"
+              id="level" 
+              v-model="filter.level"
               class="styled-select"
             >
               <option value="">All Levels</option>
-              <option v-for="level in difficultyLevels" :key="level" :value="level">
+              <option v-for="level in levels" :key="level" :value="level">
                 {{ level }}
               </option>
             </select>
           </div>
-          
+
+          <!-- Time Filter -->
           <div class="filter-group">
             <label for="time">Time:</label>
             <select 
@@ -65,6 +68,11 @@
               </option>
             </select>
           </div>
+
+          <!-- Clear Button -->
+          <button @click="clearFilters" class="clear-filters-btn">
+            Clear Filters
+          </button>
         </div>
       </section>
 
@@ -72,24 +80,16 @@
       <section id="recipes" class="recipe-grid-section">
         <h2>Featured Breakfast Recipes</h2>
         <div class="category-grid">
-          <div 
-            v-for="recipe in filteredRecipes" 
-            :key="recipe.id"
-            class="category-card"
-          >
+          <div v-for="recipe in filteredRecipes" :key="recipe.id" class="category-card">
             <NuxtLink :to="`/recipes/${recipe.id}`">
               <div class="category-content">
-                <img 
-                  :src="recipe.image" 
-                  :alt="recipe.title"
-                  class="category-image"
-                >
+                <img :src="recipe.image" :alt="recipe.title" class="category-image">
                 <div class="recipe-overlay">
                   <h3>{{ recipe.title }}</h3>
                   <div class="recipe-meta">
                     <span class="time">{{ recipe.time }} mins</span>
-                    <span class="difficulty" :class="recipe.difficulty">
-                      {{ formatDifficulty(recipe.difficulty) }}
+                    <span class="difficulty" :class="recipe.level.toLowerCase()">
+                      {{ recipe.level }}
                     </span>
                   </div>
                 </div>
@@ -103,55 +103,56 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { reactive, computed } from 'vue'
 import recipes from '~/data/recipes.js'
 
-const filter = {
+const filter = reactive({
   cuisine: '',
-  difficulty: '',
+  level: '',
   time: ''
-}
+})
 
-// Filtered recipes based on selected filters (start with breakfast recipes)
+// Filtered recipes based on selected filters (breakfast only)
 const filteredRecipes = computed(() => {
   const breakfastRecipes = recipes.filter(recipe => recipe.type === 'breakfast')
   return breakfastRecipes.filter(recipe => {
     return (
-      (!filter.cuisine || recipe.cuisine === filter.cuisine) && // Filter by selected cuisine
-      (!filter.difficulty || recipe.difficulty === filter.difficulty) && // Filter by difficulty
-      (!filter.time || parseInt(recipe.time) <= parseInt(filter.time)) // Filter by time
+      (!filter.cuisine || recipe.cuisine === filter.cuisine) &&
+      (!filter.level || recipe.level.toLowerCase() === filter.level.toLowerCase()) &&
+      (!filter.time || parseInt(recipe.time) <= parseInt(filter.time))
     )
   })
 })
 
+// Unique cuisine list from recipes
 const cuisines = computed(() => {
-  return [...new Set(recipes.map(r => r.cuisine))] // Unique cuisines from recipes data
+  return [...new Set(recipes.map(r => r.cuisine))]
 })
 
-const difficultyLevels = ['Easy', 'Medium', 'Hard']
+// Difficulty levels replaced with "levels"
+const levels = ['Beginner', 'Intermediate', 'Advanced']
 
+// Cooking time options
 const timeOptions = [
-  { label: 'Any Time', value: '' },
   { label: 'Under 10 mins', value: '10' },
   { label: 'Under 20 mins', value: '20' },
   { label: 'Under 30 mins', value: '30' }
 ]
 
-const formatDifficulty = (difficulty) => {
-  const levels = {
-    easy: 'Beginner',
-    medium: 'Intermediate',
-    hard: 'Advanced'
-  }
-  return levels[difficulty.toLowerCase()] || difficulty
-}
-
+// Scroll to recipes section
 const scrollToRecipes = () => {
   const element = document.getElementById('recipes')
   element.scrollIntoView({ behavior: 'smooth' })
 }
+
+// Clear all filters
+const clearFilters = () => {
+  filter.cuisine = ''
+  filter.level = ''
+  filter.time = ''
+}
 </script>
 
 <style scoped>
-@import "@/assets/css/template.css"; /* Custom styles for your template */
+@import "@/assets/css/template.css"; 
 </style>
