@@ -1,61 +1,59 @@
 <template>
-  <div class="page-container">
-    <main class="about-container">
-      <Breadcrumbs :items="[
-        { text: 'Home', to: '/' },
-        { text: 'About Us', disabled: true }
-      ]" />
-      
-      <section class="about-hero">
-        <h1>About Us</h1>
-        <p class="subtitle">Empowering your cooking with simplicity and flavor</p>
-      </section>
-      
-      <section class="mission-section">
-        <div class="mission-content">
-          <h2 class = mission-title>Our mission</h2>
-          <p>
-            Welcome to InRecipe – your go-to platform for discovering and organizing delicious recipes!
-            We're a passionate team of students from Silliman University, dedicated to making meal planning and cooking accessible and enjoyable for everyone.
-            Our mission is to provide a user-friendly space where you can explore diverse cuisines, manage your meals, and stay on top of your nutritional goals.
-            Join us on this flavorful journey, and let's make cooking fun and stress-free together!
-          </p>
-        </div>
-      </section>
-      
-      <section class="team-section">
-        <h2>Meet The Team</h2>
-        <div class="team-grid">
-          <div v-for="member in teamMembers" :key="member.id" class="team-card">
-            <div class="avatar-container">
-              <img 
-                :src="member.avatar" 
-                :alt="member.name" 
-                class="team-avatar"
-              >
-            </div>
-            <h3>{{ member.name }}</h3>
-            <p class="role">
-              <span class="role-line">{{ member.role.split(',')[0] }}</span>
-              <span class="role-line">{{ member.role.split(',')[1] }}</span>
-            </p>
-            <p class="bio">{{ member.bio }}</p>
+  <main class="about-page">
+    <Breadcrumbs :items="[
+      { text: 'Home', to: '/' },
+      { text: 'About Us', disabled: true }
+    ]" />
+    
+    <section class="about-hero">
+      <h1>About Us</h1>
+      <p class="subtitle">Empowering your cooking with simplicity and flavor</p>
+    </section>
+    
+    <section class="mission-section">
+      <div class="mission-content">
+        <h2 class="mission-title">Our Mission</h2>
+        <p>
+          Welcome to InRecipe – your go-to platform for discovering and organizing delicious recipes!
+          We're a passionate team of students from Silliman University, dedicated to making meal planning and cooking accessible and enjoyable for everyone.
+          Our mission is to provide a user-friendly space where you can explore diverse cuisines, manage your meals, and stay on top of your nutritional goals.
+          Join us on this flavorful journey, and let's make cooking fun and stress-free together!
+        </p>
+      </div>
+    </section>
+    
+    <section class="team-section">
+      <h2>Meet The Team</h2>
+      <div class="team-grid">
+        <div v-for="member in teamMembers" :key="member.id" class="team-card">
+          <div class="avatar-container">
+            <img 
+              :src="member.avatar" 
+              :alt="member.name" 
+              class="team-avatar"
+            >
           </div>
+          <h3>{{ member.name }}</h3>
+          <p class="role">
+            <span class="role-line">{{ member.role.split(',')[0] }}</span>
+            <span class="role-line">{{ member.role.split(',')[1] }}</span>
+          </p>
+          <p class="bio">{{ member.bio }}</p>
         </div>
-      </section>
-      
-      <section class="navigation-cta">
-        <div class="cta-buttons">
-          <NuxtLink to="/contact" class="nav-button contact-button">
-            Contact Us
-          </NuxtLink>
-          <NuxtLink to="/faq" class="nav-button faq-button">
-            Visit FAQ
-          </NuxtLink>
-        </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+    
+    <section class="navigation-cta">
+      <div class="cta-buttons">
+        <NuxtLink to="/contact" class="nav-button contact-button">
+          Contact Us
+        </NuxtLink>
+        <NuxtLink to="/faq" class="nav-button faq-button">
+          Visit FAQ
+        </NuxtLink>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script setup>
@@ -63,14 +61,14 @@ const teamMembers = [
   {
     id: 1,
     name: 'Ruiming Cai',
-    role: 'Developer,UI/UX Designer',
+    role: 'Developer, UI/UX Designer',
     bio: 'HATE CL',
     avatar: '/lucy.JPG'
   },
   {
     id: 2,
     name: 'Francedric Jhann Vicher',
-    role: 'Content Editor,Document Writer',
+    role: 'Content Editor, Document Writer',
     bio: 'idk what to put here',
     avatar: '/cedric.jpeg'
   }
@@ -85,25 +83,21 @@ const teamMembers = [
   --medium-gray: #959090;
 }
 
-.page-container {
-  font-family: 'Calibri', sans-serif;
-}
-
-.about-container {
+.about-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 40px 20px;
+  color: var(--primary);
 }
 
 .about-hero {
   text-align: center;
-  margin: 32px 0;
 }
 
 .about-hero h1 {
   font-size: 2.75rem;
   color: var(--primary);
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .subtitle {
@@ -137,7 +131,7 @@ const teamMembers = [
 
 .mission-content p {
   color: black;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
 }
 
@@ -249,17 +243,47 @@ const teamMembers = [
 @media (max-width: 768px) {
   .mission-section {
     flex-direction: column;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
     align-items: center;
   }
 
-  .nav-button {
-    width: 100%;
-    max-width: 250px;
+  .mission-title {
+    text-align: center;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .team-card {
+    padding: 24px;
+  }
+
+  .team-avatar {
+    width: 120px;
+    height: 120px;
   }
 }
 
+@media (max-width: 480px) {
+  .about-page {
+    padding: 30px 15px;
+  }
+
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .team-card {
+    padding: 16px;
+  }
+
+  .team-avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
 </style>

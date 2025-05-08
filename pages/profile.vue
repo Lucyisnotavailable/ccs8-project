@@ -7,7 +7,7 @@
         <!-- 左侧用户基本信息 -->
         <div class="user-basic">
           <div class="avatar-container">
-            <img src="https://via.placeholder.com/200" alt="User Avatar" class="avatar">
+            <img src="/public/cute.jpg" alt="User Avatar" class="avatar">
           </div>
           <div class="name-title">
             <h1 class="username">Lucy</h1>

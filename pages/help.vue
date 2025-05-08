@@ -105,7 +105,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-    font-family: 'Segoe UI', system-ui, sans-serif;
     color: var(--primary);
   }
   

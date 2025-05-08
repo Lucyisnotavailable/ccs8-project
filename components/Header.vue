@@ -1,7 +1,9 @@
 <template>
   <header class="site-header">
     <div class="header-left">
-      <NuxtLink to="/"> <img src="/assets/images/logo.png" alt="Logo" class="logo" /> </NuxtLink>
+      <NuxtLink to="/">
+        <img src="/assets/images/logo.png" alt="Logo" class="logo" />
+      </NuxtLink>
     </div>
 
     <div class="header-center">
@@ -15,12 +17,12 @@
           <li
             class="nav-item-dropdown"
             :class="{ active: $route.path.startsWith('/category') || $route.path === '/allrecipe' }"
-            @mouseenter="showDropdown = true"
-            @mouseleave="showDropdown = false"
+            @mouseenter="dropdownActive = 'recipes'"
+            @mouseleave="dropdownActive = null"
           >
             <NuxtLink to="/allrecipe">Recipes ▾</NuxtLink>
             <transition name="fade">
-              <ul v-if="showDropdown" class="dropdown-menu">
+              <ul v-if="dropdownActive === 'recipes'" class="dropdown-menu">
                 <li><NuxtLink to="/category/breakfast">Breakfast</NuxtLink></li>
                 <li><NuxtLink to="/category/lunch">Lunch</NuxtLink></li>
                 <li><NuxtLink to="/category/dinner">Dinner</NuxtLink></li>
@@ -36,12 +38,12 @@
           <li
             class="nav-item-dropdown"
             :class="{ active: ['/about', '/help', '/contact'].includes($route.path) }"
-            @mouseenter="showDropdown = true"
-            @mouseleave="showDropdown = false"
+            @mouseenter="dropdownActive = 'about'"
+            @mouseleave="dropdownActive = null"
           >
             <NuxtLink to="/about">About Us ▾</NuxtLink>
             <transition name="fade">
-              <ul v-if="showDropdown" class="dropdown-menu">
+              <ul v-if="dropdownActive === 'about'" class="dropdown-menu">
                 <li><NuxtLink to="/help">Help / FAQ</NuxtLink></li>
                 <li><NuxtLink to="/contact">Contact Us</NuxtLink></li>
               </ul>
@@ -65,7 +67,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const isLoggedIn = ref(false)
-const showDropdown = ref(false)
+const dropdownActive = ref(null)
 
 const router = useRouter()
 const $route = useRoute()
@@ -80,8 +82,3 @@ const goToProfile = () => {
   router.push('/profile')
 }
 </script>
-
-<style scoped>
-
-
-</style>

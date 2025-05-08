@@ -211,6 +211,12 @@ const goBack = () => {
   height: fit-content;
 }
 
+.instructions{
+  padding: 20px;
+  border-radius: 8px;
+  height: fit-content;
+}
+
 .ingredients h2,
 .instructions h2 {
   color: var(--primary);

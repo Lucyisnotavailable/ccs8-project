@@ -2,23 +2,24 @@
   <div>
     <main class="home-container">
       <!-- Hero Banner -->
-      <section class="welcome-banner">
-        <div class="left-content">
-          <h1>Healthy Breakfast Recipes</h1>
-          <p class="subtitle">Start your day right with these morning delights</p>
-          <div class="action-buttons">
-            <button @click="scrollToRecipes" class="secondary-btn">
-              Browse Recipes →
-            </button>
+       <section class="welcome-banner">
+          <div class="left-content">
+            <h1>Tasty Breakfast Recipes</h1>
+            <p class="subtitle">Start your day right with these morning delights</p>
+            <div class="action-buttons">
+              <button @click="scrollToRecipes" class="secondary-btn">
+                Browse Recipes
+              </button>
+      
+            </div>
           </div>
-        </div>
-        <div class="right-content">
-          <img 
-            src="/assets/images/Breakfast.jpg" 
-            alt="Breakfast Recipes"
-            class="w-full h-48 object-cover rounded"
-          >
-        </div>
+          <div class="right-content">
+            <img 
+              src="/assets/images/Breakfast.jpg" 
+              alt="Lunch Recipes"
+              class="banner-image"
+            >
+          </div>
       </section>
 
       <!-- Recipe Filters -->
@@ -78,7 +79,7 @@
 
       <!-- Recipes Grid -->
       <section id="recipes" class="recipe-grid-section">
-        <h2>Featured Breakfast Recipes</h2>
+        <h2>Breakfast Recipes</h2>
         <div class="category-grid">
           <div v-for="recipe in filteredRecipes" :key="recipe.id" class="category-card">
             <NuxtLink :to="`/recipes/${recipe.id}`">
@@ -98,6 +99,20 @@
           </div>
         </div>
       </section>
+
+          <div class="footer-buttons">
+      <NuxtLink to="/category/lunch" class="page-footer-btn left-btn">
+        ← Lunch Recipes
+      </NuxtLink>
+      <NuxtLink to="/category/dinner" class="page-footer-btn right-btn">
+        Dinner Recipes →
+      </NuxtLink>
+    </div>
+
+
+
+
+
     </main>
   </div>
 </template>
