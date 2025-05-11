@@ -100,7 +100,7 @@
         </div>
       </section>
       <div class="footer-buttons">
-      <NuxtLink to="/category/lunch" class="page-footer-btn left-btn">
+      <NuxtLink to="/category/breakfast" class="page-footer-btn left-btn">
         ← Breakfast Recipes
       </NuxtLink>
       <NuxtLink to="/category/dinner" class="page-footer-btn right-btn">

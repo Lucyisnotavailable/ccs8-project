@@ -104,7 +104,7 @@
       <NuxtLink to="/category/lunch" class="page-footer-btn left-btn">
         ← Lunch Recipes
       </NuxtLink>
-      <NuxtLink to="/category/dinner" class="page-footer-btn right-btn">
+      <NuxtLink to="/category/breakfast" class="page-footer-btn right-btn">
         Breakfast Recipes →
       </NuxtLink>
     </div>
