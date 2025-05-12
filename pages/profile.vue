@@ -22,10 +22,7 @@
               <span class="stat-number">{{ favoriteRecipes.length }}</span>
               <span class="stat-label">Favorite Recipes</span>
             </div>
-            <div class="stat-item">
-              <span class="stat-number">{{ weeklyCalories }}</span>
-              <span class="stat-label">Weekly Calorie Intake</span>
-            </div>
+            
           </div>
           
           <div class="info-item">
@@ -41,7 +38,7 @@
       <!-- Weekly Calorie Check -->
       <div class="calorie-check-section">
         <div class="section-header">
-          <h2 class="section-title">Weekly Nutrition Summary</h2>
+          <h2 class="section-title">Weekly Calorie Summary</h2>
           <NuxtLink to="/meal" class="view-all">View Calculator →</NuxtLink>
         </div>
         <div class="calorie-info">
@@ -76,7 +73,7 @@
         <!-- No favorites message -->
         <div v-if="favoriteRecipes.length === 0" class="no-favorites">
           <p class="text-xl mb-4">You haven't saved any recipes yet</p>
-          <NuxtLink to="/recipes" class="discover-button">Explore Recipes →</NuxtLink>
+          <NuxtLink to="/allrecipe" class="discover-button">Explore Recipes →</NuxtLink>
         </div>
 
         <!-- Favorites grid -->

@@ -3,7 +3,7 @@
     <div class="container">
       <section class="about-hero">
         <h1>Calorie Calculator</h1>
-        <p class="subtitle">Empowering your cooking with simplicity and flavor</p>
+        <p class="subtitle">Track your calorie intake every moment of every day</p>
       </section>
   
       <div class="cccontainer">

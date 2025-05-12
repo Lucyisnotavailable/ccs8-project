@@ -101,11 +101,11 @@
       </section>
 
           <div class="footer-buttons">
-      <NuxtLink to="/category/lunch" class="page-footer-btn left-btn">
-        ← Lunch Recipes
+      <NuxtLink to="/category/dinner" class="page-footer-btn left-btn">
+        ← Dinner Recipes
       </NuxtLink>
-      <NuxtLink to="/category/dinner" class="page-footer-btn right-btn">
-        Dinner Recipes →
+      <NuxtLink to="/category/lunch" class="page-footer-btn right-btn">
+        Lunch Recipes →
       </NuxtLink>
     </div>
 

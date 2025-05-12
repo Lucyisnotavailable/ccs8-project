@@ -9,13 +9,13 @@
         <div class="info-card">
           <div class="icon">📧</div>
           <h3>Email</h3>
-          <p>support@recipeapp.com</p>
+          <p>justaemail@recipeapp.com</p>
           <p>Response time: within 24 hours</p>
         </div>
         <div class="info-card">
           <div class="icon">📞</div>
           <h3>Phone</h3>
-          <p>1-800-RECIPE</p>
+          <p>1-800-1234561</p>
           <p>Available Mon-Fri, 8am-6pm EST</p>
         </div>
       </section>

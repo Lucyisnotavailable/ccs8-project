@@ -62,14 +62,14 @@ const teamMembers = [
     id: 1,
     name: 'Ruiming Cai',
     role: 'Developer, UI/UX Designer',
-    bio: 'HATE CL',
+    bio: 'I hate useless people :<',
     avatar: '/lucy.JPG'
   },
   {
     id: 2,
     name: 'Francedric Jhann Vicher',
     role: 'Content Editor, Document Writer',
-    bio: 'idk what to put here',
+    bio: 'I like men',
     avatar: '/cedric.jpeg'
   }
 ]
