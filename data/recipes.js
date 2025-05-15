@@ -843,5 +843,183 @@ export default [
       protein: '10g',
       fat: '26g'
     }
+  },
+  {
+    id: 27,
+    title: 'Sloppy Joe Sandwich',
+    type: 'lunch',
+    description: 'A saucy, savory ground beef sandwich that’s messy in the best way.',
+    image: '/images/lunch/sloppy-joe.jpg',
+    difficulty: 'Beginner',
+    time: 25,
+    calories: 450,
+    cuisine: 'American',
+    level: 'Beginner',
+    ingredients: [
+      '1 tablespoon vegetable oil',
+      '1 pound ground beef',
+      '1/2 cup chopped onion',
+      '1/4 cup chopped green bell pepper',
+      '2 cloves garlic, minced',
+      '3/4 cup ketchup',
+      '2 tablespoons tomato paste',
+      '1 tablespoon Worcestershire sauce',
+      '1 tablespoon brown sugar',
+      '1/2 teaspoon salt',
+      '1/4 teaspoon black pepper',
+      '4 hamburger buns'
+    ],
+    instructions: [
+      'Heat oil in a skillet over medium heat. Add ground beef, breaking it up with a spoon, and cook until browned.',
+      'Add onion, bell pepper, and garlic. Cook until vegetables are soft, about 5 minutes.',
+      'Stir in ketchup, tomato paste, Worcestershire sauce, brown sugar, salt, and pepper.',
+      'Reduce heat and simmer for 10 minutes until thickened.',
+      'Spoon the mixture onto toasted hamburger buns and serve warm.'
+    ],
+    nutrition: {
+      calories: '450 kcal',
+      carbohydrates: '35g',
+      protein: '23g',
+      fat: '24g'
+    }
+  },
+  {
+    id: 28,
+    title: 'Pasta Salad',
+    type: 'lunch',
+    description: 'A colorful and refreshing cold pasta dish tossed with vegetables and a tangy dressing.',
+    image: '/images/lunch/pasta-salad.jpg',
+    difficulty: 'Beginner',
+    time: 20,
+    calories: 350,
+    cuisine: 'American',
+    level: 'Beginner',
+    ingredients: [
+      '2 cups cooked pasta (fusilli or rotini)',
+      '1/2 cup cherry tomatoes, halved',
+      '1/2 cup cucumber, diced',
+      '1/4 cup red onion, thinly sliced',
+      '1/4 cup black olives, sliced',
+      '1/4 cup feta cheese, crumbled',
+      '2 tablespoons chopped parsley',
+      '3 tablespoons olive oil',
+      '1 tablespoon red wine vinegar',
+      '1/2 teaspoon dried oregano',
+      'Salt and pepper to taste'
+    ],
+    instructions: [
+      'Cook pasta according to package directions. Drain and rinse under cold water.',
+      'In a large bowl, combine pasta, cherry tomatoes, cucumber, red onion, olives, feta cheese, and parsley.',
+      'In a small bowl, whisk together olive oil, red wine vinegar, oregano, salt, and pepper.',
+      'Pour the dressing over the pasta mixture and toss until well coated.',
+      'Chill in the fridge for 10–15 minutes before serving.'
+    ],
+    nutrition: {
+      calories: '350 kcal',
+      carbohydrates: '40g',
+      protein: '8g',
+      fat: '18g'
+    }
+  },
+  {
+    id: 29,
+    title: 'Potato Salad',
+    type: 'lunch',
+    description: 'A creamy and tangy potato salad with tender chunks of potato and crunchy vegetables.',
+    image: '/images/lunch/potato-salad.jpg',
+    difficulty: 'Beginner',
+    time: 25,
+    calories: 320,
+    cuisine: 'American',
+    level: 'Beginner',
+    ingredients: [
+      '1 1/2 pounds potatoes (Yukon Gold or red), peeled and cubed',
+      '1/2 cup mayonnaise',
+      '1 tablespoon yellow mustard',
+      '2 teaspoons apple cider vinegar',
+      '1/3 cup chopped celery',
+      '1/4 cup chopped red onion',
+      '2 hard-boiled eggs, chopped',
+      'Salt and pepper to taste',
+      'Chopped parsley or chives, for garnish (optional)'
+    ],
+    instructions: [
+      'Place potatoes in a pot of salted water. Bring to a boil and cook until fork-tender, about 10–12 minutes. Drain and let cool slightly.',
+      'In a large bowl, whisk together mayonnaise, mustard, vinegar, salt, and pepper.',
+      'Add the cooked potatoes, celery, onion, and chopped eggs to the bowl. Gently toss to coat.',
+      'Refrigerate for at least 1 hour before serving. Garnish with chopped parsley or chives if desired.'
+    ],
+    nutrition: {
+      calories: '320 kcal',
+      carbohydrates: '28g',
+      protein: '6g',
+      fat: '20g'
+    }
+  },
+  {
+    id: 30,
+    title: 'Chicken Salad',
+    type: 'lunch',
+    description: 'A creamy and flavorful chicken salad with crunchy celery and a touch of mustard.',
+    image: '/images/lunch/chicken-salad.jpg',
+    difficulty: 'Beginner',
+    time: 15,
+    calories: 350,
+    cuisine: 'American',
+    level: 'Beginner',
+    ingredients: [
+      '2 cups cooked chicken, shredded or diced',
+      '1/3 cup mayonnaise',
+      '1 tablespoon Dijon mustard',
+      '1 tablespoon lemon juice',
+      '1/3 cup chopped celery',
+      '2 tablespoons chopped red onion',
+      'Salt and pepper to taste',
+      'Lettuce leaves or bread for serving'
+    ],
+    instructions: [
+      'In a mixing bowl, combine the mayonnaise, Dijon mustard, lemon juice, salt, and pepper.',
+      'Add the chicken, celery, and red onion. Stir until everything is well coated.',
+      'Serve immediately on a bed of lettuce, in a sandwich, or chill for later.'
+    ],
+    nutrition: {
+      calories: '350 kcal',
+      carbohydrates: '3g',
+      protein: '28g',
+      fat: '24g'
+    }
+  },
+  {
+    id: 31,
+    title: 'Philly Cheesesteak',
+    type: 'lunch',
+    description: 'A classic sandwich loaded with thinly sliced beef, sautéed onions, and melted cheese in a toasted hoagie roll.',
+    image: '/images/lunch/philly-cheesesteak.jpg',
+    difficulty: 'Beginner',
+    time: 20,
+    calories: 500,
+    cuisine: 'American',
+    level: 'Beginner',
+    ingredients: [
+      '1 tablespoon vegetable oil',
+      '1 small onion, thinly sliced',
+      '1 green bell pepper, thinly sliced (optional)',
+      '1/2 pound ribeye or sirloin steak, thinly sliced',
+      'Salt and pepper to taste',
+      '4 slices provolone cheese (or Cheez Whiz)',
+      '2 hoagie rolls, split and lightly toasted'
+    ],
+    instructions: [
+      'Heat oil in a skillet over medium heat. Add onions (and bell pepper, if using) and sauté until soft and golden.',
+      'Add the thinly sliced steak to the skillet. Season with salt and pepper and cook until browned.',
+      'Reduce heat to low and place cheese slices over the meat. Let melt slightly, then stir to combine.',
+      'Spoon the mixture into toasted hoagie rolls and serve hot.'
+    ],
+    nutrition: {
+      calories: '500 kcal',
+      carbohydrates: '35g',
+      protein: '30g',
+      fat: '28g'
+    }
   }
 ];

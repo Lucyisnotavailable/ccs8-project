@@ -481,7 +481,7 @@ const logout = () => {
   background-color: #b89c4a;
 }
 
-/* Responsive design */
+/* 响应式设计 */
 @media (max-width: 900px) {
   .user-basic,
   .user-details {
@@ -524,6 +524,26 @@ const logout = () => {
   .stats-container {
     flex-direction: column;
     gap: 15px;
+  }
+
+  /* 新增：调整移动端logout按钮位置 */
+  .logout-button {
+    position: static; /* 取消绝对定位 */
+    margin-top: 20px;
+    align-self: center; /* 居中显示 */
+    width: 100%;
+    max-width: 200px;
+  }
+
+  /* 调整profile-card的布局 */
+  .profile-card {
+    flex-direction: column;
+    padding: 25px 20px;
+  }
+
+  .user-details {
+    padding-top: 20px;
+    margin-top: 20px;
   }
 }
 </style>

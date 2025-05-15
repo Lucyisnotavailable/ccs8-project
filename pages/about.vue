@@ -62,7 +62,7 @@ const teamMembers = [
     id: 1,
     name: 'Ruiming Cai',
     role: 'Developer, UI/UX Designer',
-    bio: 'I hate useless people :<',
+    bio: 'I am tried',
     avatar: '/lucy.JPG'
   },
   {

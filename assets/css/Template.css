@@ -1,7 +1,59 @@
 /* styles.css */
 
+/* mobile design for home*/
+@media screen and (max-width: 768px) {
+  .welcome-banner {
+    flex-direction: column;
+    padding: 30px 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
 
-/*Common use*/
+  .left-content {
+    order: 2;
+    text-align: center;
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .right-content {
+    order: 1;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .welcome-banner h1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+  }
+
+  .video-placeholder {
+    border-radius: 12px;
+    max-height: 200px;
+    object-fit: cover;
+  }
+}
+
 
 /* Common Styling */
 body {
@@ -93,7 +145,7 @@ body {
 /* Hover效果 */
 .nav-menu li a:hover,
 .nav-item-dropdown:hover > a {
-  color: white;
+  color: white !important;
   background-color: var(--primary); /* 使用主色 */
   padding: 6px 12px;
   border-radius: 6px;

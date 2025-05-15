@@ -25,7 +25,7 @@
             playsinline
             preload="none"
           >
-            <source src="https://via.placeholder.com/500x300" type="video/mp4" />
+            <source src="/public/Inrecipe.mov" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -97,3 +97,106 @@ const triggerVideoFullscreen = () => {
 }
 
 </script>
+
+<style scoped>
+/* 只针对手机端的样式 - 不会影响桌面端 */
+@media screen and (max-width: 768px) {
+  .welcome-banner {
+    flex-direction: column;
+    padding: 30px 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .left-content {
+    order: 2;
+    text-align: center;
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .right-content {
+    order: 1;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .welcome-banner h1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+  }
+
+  .video-placeholder {
+    border-radius: 12px;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  /* 快速分类区域调整 */
+  .quick-categories {
+    margin-bottom: 50px;
+    padding: 0 15px;
+  }
+
+  .quick-categories h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .category-card {
+    height: 180px;
+  }
+
+  .category-overlay h3 {
+    font-size: 1.3rem;
+  }
+
+  .category-overlay p {
+    font-size: 0.85rem;
+  }
+}
+
+/* 小屏幕手机优化 */
+@media screen and (max-width: 480px) {
+  .welcome-banner {
+    padding: 25px 15px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .category-card {
+    height: 160px;
+  }
+}
+</style>
